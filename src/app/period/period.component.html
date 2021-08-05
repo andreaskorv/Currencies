@@ -1,0 +1,46 @@
+<form [formGroup]="periodForm">
+  <h3>Time Series</h3>
+  <mat-form-field appearance="fill" class="inpt">
+    <mat-label>Choose one</mat-label>
+    <mat-select formControlName="compareCurrency">
+        <mat-option value="">---select something---</mat-option>
+        <mat-option *ngFor="let currency of currencies" [value]="currency">
+            {{ currency }}
+        </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <span *ngIf="periodForm.value.compareCurrency">
+    <mat-form-field appearance="fill" class="inpt">
+      <mat-label>Choose one</mat-label>
+      <mat-select formControlName="toCurrency">
+        <mat-option value="">---select something---</mat-option>
+        <mat-option *ngFor="let currency of currencies" [value]="currency">
+            {{ currency }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field><br>
+    <div *ngIf="periodForm.value.toCurrency == periodForm.value.compareCurrency">
+      Currencies cannot be equal.
+    </div>
+    <span *ngIf="periodForm.value.toCurrency && periodForm.value.toCurrency != periodForm.value.compareCurrency">
+      <mat-form-field appearance="fill" class="example-form-field" class="inpt">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [max]="maxDate" [rangePicker]="rangePicker">
+          <input formControlName="forFirstDate" matStartDate placeholder="Start date">
+          <input formControlName="forLastDate" matEndDate placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+        <mat-date-range-picker #rangePicker>
+          <mat-date-range-picker-actions>
+            <button mat-button matDateRangePickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+          </mat-date-range-picker-actions>
+        </mat-date-range-picker>
+      </mat-form-field>
+      <span *ngIf="periodForm.value.forFirstDate && periodForm.value.forLastDate">
+        <canvas id="periodChart"></canvas>
+      </span>
+    </span>
+  </span>
+</form>
+<br>

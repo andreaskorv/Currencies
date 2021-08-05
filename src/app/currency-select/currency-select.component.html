@@ -1,0 +1,30 @@
+<form [formGroup]="currencySelectForm">
+    <h3>Currency Rates</h3>
+    <mat-form-field appearance="fill" class="inpt">
+        <mat-label>Choose one</mat-label>
+        <mat-select formControlName="selectedCurrency">
+            <mat-option>---select something---</mat-option>
+            <mat-option *ngFor="let currency of currencies" [value]="currency">
+                {{ currency }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <span *ngIf="currencySelectForm.value.selectedCurrency">
+        <table mat-table [dataSource]="currencyRates" class="mat-elevation-z8">
+            <ng-container matColumnDef="Currency">
+                <th mat-header-cell *matHeaderCellDef> Currency </th>
+                <td mat-cell *matCellDef="let currencyRate"> {{currencyRate.symbol}} </td>
+              </ng-container>
+            
+              <!-- Name Column -->
+              <ng-container matColumnDef="Rate">
+                <th mat-header-cell *matHeaderCellDef> Rate </th>
+                <td mat-cell *matCellDef="let currencyRate"> {{currencyRate.rate}} </td>
+              </ng-container>
+        
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </span>
+</form>
+<br>

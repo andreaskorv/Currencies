@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+body {
+    background-image: linear-gradient(to top, #704214aa, #704214aa),
+    url("http://www.chaskor.ru/posts_images_201911/392_300_45526_.jpg");
+    background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

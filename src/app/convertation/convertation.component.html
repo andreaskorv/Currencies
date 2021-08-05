@@ -1,0 +1,35 @@
+<form [formGroup]="convertationForm">
+   <h3>Converter</h3>
+   <mat-form-field appearance="fill" class="inpt">
+      <mat-label>Choose one</mat-label>
+      <mat-select formControlName="fromCurrency">
+         <mat-option value="">---select something---</mat-option>
+         <mat-option *ngFor="let currency of currencies" [value]="currency">
+            {{ currency }}
+         </mat-option>
+      </mat-select>
+   </mat-form-field>
+   <span *ngIf="convertationForm.value.fromCurrency">
+      <mat-form-field appearance="fill" class="inpt">
+         <mat-label>Choose one</mat-label>
+         <mat-select formControlName="toCurrency">
+            <mat-option value="">---select something---</mat-option>
+            <mat-option *ngFor="let currency of currencies" [value]="currency">
+               {{ currency }}
+            </mat-option>
+         </mat-select>
+      </mat-form-field><br>
+      <div *ngIf="convertationForm.value.toCurrency == convertationForm.value.fromCurrency">
+         Currencies cannot be equal.
+      </div>
+      <span *ngIf="convertationForm.value.toCurrency && convertationForm.value.toCurrency != convertationForm.value.fromCurrency">
+
+         <input formControlName="forAmount" class="inpt" numbersOnly/>
+         
+
+         <span *ngIf="convertationForm.value.forAmount">
+            {{result}}
+         </span>
+      </span>
+   </span>
+</form>
